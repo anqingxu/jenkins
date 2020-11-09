@@ -3,14 +3,6 @@
 pipelineJob('build-petclinic-using-jenkins-operator') {
     displayName('Build PetClinic using jenkins-operator')
 
-    properties {
-        pipelineTriggers {
-            triggers {
-                pollSCM 'H/2 * * * *'
-            }
-        }
-    }
-
     definition {
         cpsScm {
             scm {
