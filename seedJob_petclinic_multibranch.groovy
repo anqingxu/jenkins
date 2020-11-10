@@ -11,7 +11,8 @@ multibranchPipelineJob('spring-petclinic-ci') {
 
     // check every minute for scm changes as well as new / deleted branches
     triggers {
-      periodic(1)
+      //periodic(1)
+      pollSCM 'H/2 * * * *'
     }
 
     orphanedItemStrategy {
