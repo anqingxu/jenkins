@@ -8,6 +8,12 @@ multibranchPipelineJob('spring-petclinic-ci') {
             includes("master main release/* feature/* bugfix/*")
         }
     }
+
+    // check every minute for scm changes as well as new / deleted branches
+    triggers {
+      periodic(1)
+    }
+
     orphanedItemStrategy {
         discardOldItems {
             numToKeep(20)
