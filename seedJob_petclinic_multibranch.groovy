@@ -20,34 +20,36 @@ for (git_repo in git_repos)
 
     // configure the branch / PR sources
     branchSources {
+      /*
+      github {
+            // Set a unique ID as workaround of issue https://issues.jenkins-ci.org/browse/JENKINS-43693
+            id(${git_project} + "_" + ${git_repo})
+            scanCredentialsId('dockerhub_id')
+            repoOwner(${git_project})
+            repository(${git_repo})
+            // // Build origin branches.
+            // buildOriginBranch(true)
+            // // Build origin branches also filed as PRs.
+            // buildOriginBranchWithPR(true)
+            // // Build origin PRs (merged with base branch).
+            // buildOriginPRMerge(true)
+            // // Build origin PRs (unmerged head).
+            // buildOriginPRHead(false)
+            // // Build fork PRs (merged with base branch).
+            // buildForkPRMerge(true)
+            // // Build fork PRs (unmerged head).
+            // buildForkPRHead(false)
+       }
+       */
+
       branchSource {
         //https://github.com/cfpb/jenkins-automation/blob/main/src/main/groovy/jenkins/automation/builders/MultibranchPipelineJobBuilder.groovy
         //https://github.com/camptocamp/jenkins-initial-dsl-job/blob/master/generate_pipelines.groovy
-        //git {
-        //  id(${git_project} + "_" + ${git_repo}) // IMPORTANT: use a constant and unique identifier
-        //  remote('https://github.com/${git_project}/${git_repo}.git')
-        //  credentialsId('dockerhub_id');
-        //  includes('Jenkinsfile')
-        //}
-
-        github {
-                // Set a unique ID as workaround of issue https://issues.jenkins-ci.org/browse/JENKINS-43693
-                id(${git_project} + "_" + ${git_repo})
-                scanCredentialsId('dockerhub_id')
-                repoOwner(${git_project})
-                repository(${git_repo})
-                // // Build origin branches.
-                // buildOriginBranch(true)
-                // // Build origin branches also filed as PRs.
-                // buildOriginBranchWithPR(true)
-                // // Build origin PRs (merged with base branch).
-                // buildOriginPRMerge(true)
-                // // Build origin PRs (unmerged head).
-                // buildOriginPRHead(false)
-                // // Build fork PRs (merged with base branch).
-                // buildForkPRMerge(true)
-                // // Build fork PRs (unmerged head).
-                // buildForkPRHead(false)
+        git {
+          id(${git_project} + "_" + ${git_repo}) // IMPORTANT: use a constant and unique identifier
+          remote('https://github.com/${git_project}/${git_repo}.git')
+          credentialsId('dockerhub_id');
+          includes('Jenkinsfile')
         }
 
         strategy {
