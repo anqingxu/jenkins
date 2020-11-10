@@ -10,14 +10,19 @@ multibranchPipelineJob('spring-petclinic-ci') {
     }
 
     // check every minute for scm changes as well as new / deleted branches
-    triggers {
+    //triggers {
       //periodic(1)
-      pollSCM 'H/2 * * * *'
-    }
+    //}
 
     orphanedItemStrategy {
         discardOldItems {
             numToKeep(20)
         }
+    }
+
+    configure {
+      it / 'triggers' << 'com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger'{
+        spec '* * * * *'
+        interval "60000"
     }
 }
