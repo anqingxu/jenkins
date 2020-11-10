@@ -24,5 +24,6 @@ multibranchPipelineJob('spring-petclinic-ci') {
       it / 'triggers' << 'com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger'{
         spec '* * * * *'
         interval "60000"
+      }
     }
 }
