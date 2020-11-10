@@ -20,7 +20,6 @@ for (git_repo in git_repos)
 
     // configure the branch / PR sources
     branchSources {
-      /*
       github {
             // Set a unique ID as workaround of issue https://issues.jenkins-ci.org/browse/JENKINS-43693
             id(${git_project} + "_" + ${git_repo})
@@ -40,8 +39,8 @@ for (git_repo in git_repos)
             // // Build fork PRs (unmerged head).
             // buildForkPRHead(false)
        }
-       */
 
+      /*
       branchSource {
         //https://github.com/cfpb/jenkins-automation/blob/main/src/main/groovy/jenkins/automation/builders/MultibranchPipelineJobBuilder.groovy
         //https://github.com/camptocamp/jenkins-initial-dsl-job/blob/master/generate_pipelines.groovy
@@ -70,6 +69,7 @@ for (git_repo in git_repos)
           }
         }
       }
+      */
     }
 
     // check every minute for scm changes as well as new / deleted branches
