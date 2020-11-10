@@ -20,6 +20,7 @@ for (git_repo in git_repos)
 
     // configure the branch / PR sources
     branchSources {
+    /*
       github {
             // Set a unique ID as workaround of issue https://issues.jenkins-ci.org/browse/JENKINS-43693
             id(${git_project} + "_" + ${git_repo})
@@ -39,7 +40,13 @@ for (git_repo in git_repos)
             // // Build fork PRs (unmerged head).
             // buildForkPRHead(false)
        }
-
+      */
+      git {
+        id(${git_project} + "_" + ${git_repo}) // IMPORTANT: use a constant and unique identifier
+        remote('https://github.com/${git_project}/${git_repo}.git')
+        credentialsId('dockerhub_id');
+        includes('Jenkinsfile')
+      }
       /*
       branchSource {
         //https://github.com/cfpb/jenkins-automation/blob/main/src/main/groovy/jenkins/automation/builders/MultibranchPipelineJobBuilder.groovy
